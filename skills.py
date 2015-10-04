@@ -101,6 +101,8 @@ def find_common_items(list1, list2):
     # make sure to treat keys as str
     # then transform them back afterward?
 
+    # this was very difficult to brain in terms of dictionaries!
+
     common_items = {}
     master_list = list1 + list2
     common_items_list = []
@@ -111,7 +113,7 @@ def find_common_items(list1, list2):
 
     for item, number in common_items.items():
         if number >= 2:
-            # first I tried this but it doesn't work:
+            # first I tried this but it doesn't work, creates ["111", "222"] etc.:
             # common_items_list.append(str(item) * (number - 1))
             # so instead:
             for i in range(number - 1):
@@ -144,7 +146,7 @@ def find_unique_common_items(list1, list2):
 
     return list(set(list1) & set(list2))
 
-    # Here's what I did before I realized not to use if/in:
+    # first solution:
 
     # unique_common_items = set([])
 
@@ -185,8 +187,20 @@ def get_sum_zero_pairs(input_list):
 
     """
     sum_zero_pairs = {}
+    list_copy = input_list[:]
 
-    pass
+    for num in input_list:
+        for num2 in list_copy:
+            if num + num2 == 0:
+                new_pair = sorted([num, num2])
+                sum_zero_pairs[new_pair[0]] = new_pair[1]
+
+    pair_list = list(sum_zero_pairs.iteritems())
+
+    return pair_list
+
+
+    # here is my thought process before writing the above:
 
     # check if each number plus another number = 0
     # if so, append those two numbers to sum_zero_pairs as a list.
@@ -269,10 +283,10 @@ def encode(phrase):
 
     return transformed_string
 
-    # this was really hard, required 45 min+ work
+    # this was hard, required 45 min+ work
     # possibly because trying to do it on the train while feeling sick/burnt
     # immediately after a full week of hackbright
-    # more or less understood concept of how to solve it, but had syntax/actual code issues.
+    # I more or less understood concept of how to solve it, but had syntax/actual code issues.
     # being on the train also meant inability to look much up except help/dir
     # but I did solve it before getting home.
     # then the next day fresh I could easily use this to build the pirate translator.
