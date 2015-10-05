@@ -1,5 +1,5 @@
 # To work on the advanced problems, set to True
-ADVANCED = False
+ADVANCED = True
 
 
 def count_unique(input_string):
@@ -440,8 +440,40 @@ def adv_get_top_letter(input_string):
     Spaces do not count as letters.
 
     """
+    # create empty dictionary
+    # transform string into new string with spaces stripped out
+    # ""join.string(input_string) ?? look up syntax
+    # iterate through chars
+    # dictionary[word] = dictionary.get[word, 0] + 1
+    # find pair (or pairs) in dict with highest value
+    # return list of highest frequency letters: keys associated w highest value
 
-    return ''
+    chars_by_freq = {}
+    most_frequent_chars = []
+
+    # strip out spaces in string
+    stripped_input = input_string.replace(" ", "")
+
+    #populate chars_by_freq with key/value pairs
+    for char in stripped_input:
+        chars_by_freq[char] = chars_by_freq.get(char, 0) + 1
+
+    # find key-value pair(s) with highest value
+    freq_pairs = chars_by_freq.items()
+
+    # identify highest values in freq_pairs
+    iterator = 0
+    for tup in freq_pairs:
+        if tup[1] >= iterator:
+            iterator = tup[1]
+
+    # append keys with highest value to most_frequent_chars
+    for tup in freq_pairs:
+        if tup[1] == iterator:
+            most_frequent_chars.append(tup[0])
+
+    # put keys into sorted list & return
+    return sorted(most_frequent_chars)
 
 
 def adv_alpha_sort_by_word_length(words):
@@ -459,6 +491,12 @@ def adv_alpha_sort_by_word_length(words):
         [(1, ['a']), (2, ['an', 'ok']), (3, ['day']), (5, ['apple'])]
 
     """
+    # create emoty dictionary
+    # iterate over list to populate dict
+    # adding pairs of len(word), word
+    # think about correctly populating the values -- you've done this before, but how?
+    # and sort the value lists before adding them to dict
+    # once you have a working dict, return sorted(dict.iteritems())
 
     return []
 
